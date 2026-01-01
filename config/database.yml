@@ -1,0 +1,24 @@
+default: &default
+    adapter: postgresql
+    encoding: unicode
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    url: <%= ENV.fetch("DATABASE_URL") { "postgres://localhost/acade" } %>
+
+development:
+    <<: *default
+    database: acade_development
+
+test:
+    <<: *default
+    database: acade_test
+
+production:
+    primary: &primary_production
+        <<: *default
+        url: <%= ENV.fetch("DATABASE_URL") { "postgres://localhost/acade" } %>
+    cache:
+        <<: *primary_production
+    queue:
+        <<: *primary_production
+    cable:
+        <<: *primary_production

@@ -1,0 +1,5 @@
+<%= form_with(model: quest, class: "contents") do |form| %>
+  <%= form.text_field :name, class: "<custom your style>", required: true  %>
+  <%= form.hidden_field :is_done, value: false %>
+  <%= form.submit %>
+<% end %>

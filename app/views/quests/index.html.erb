@@ -1,0 +1,19 @@
+<div class="custom your style">
+  <div class="custom your style">
+    <div class="custom your style">
+    --------------  Your name and other information  ------------
+      <div class="my-5">
+        <%= link_to "My brag document", brag_path %>
+      </div>
+      <%= image_tag "your_image_path", class: "custom your style" %>
+    </div>
+    <div class="custom your style">
+      <%= turbo_frame_tag "new_quest_form" do %>
+        <%= render "form", quest: @quest %>
+      <% end %>
+      <%= turbo_frame_tag "quests" do %>
+        <%= render partial: "quest", collection: @quests, as: :quest %>
+      <% end %>
+    </div>
+  </div>
+</div>

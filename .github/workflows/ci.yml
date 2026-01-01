@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:17.4-alpine
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: acade_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+      
+      - name: Install dependencies
+        run: bundle install
+      
+      - name: Run Rubocop
+        run: bundle exec rubocop -a
+      
+      - name: Setup Database
+        env:
+          DATABASE_URL: postgres://postgres:postgres@localhost/acade_test
+        run: |
+          bundle exec rails db:create
+          bundle exec rails db:migrate
+      
+      - name: Run Tests
+        env:
+          DATABASE_URL: postgres://postgres:postgres@localhost/acade_test
+        run: bundle exec rspec
