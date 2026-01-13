@@ -95,9 +95,10 @@ jobs:
           http_code=$(echo "$response" | tail -n1)
           body=$(echo "$response" | sed '$d')
           
-          if [ "$http_code" -eq 200 ] || [ "$http_code" -eq 201 ]; then
+          if [ "$http_code" -eq 200 ] || [ "$http_code" -eq 201 ] || [ "$http_code" -eq 202 ]; then
             echo "✅ Deployment triggered successfully!"
             echo "Response: $body"
+            echo "HTTP Status: $http_code"
           else
             echo "❌ Failed to trigger deployment. HTTP Status: $http_code"
             echo "Response: $body"
