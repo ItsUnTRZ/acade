@@ -29,7 +29,6 @@ jobs:
   test:
     name: Tests
     runs-on: ubuntu-latest
-    needs: rubocop
     
     services:
       postgres:
