@@ -1,5 +1,11 @@
 <%= form_with(model: quest, class: "contents") do |form| %>
-  <%= form.text_field :name, class: "<custom your style>", required: true  %>
+  <div class="flex gap-3">
+    <%= form.text_field :name, 
+        class: "flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-gray-900 placeholder-gray-400", 
+        placeholder: "Enter a new quest...", 
+        required: true %>
   <%= form.hidden_field :is_done, value: false %>
-  <%= form.submit %>
+    <%= form.submit "Add Quest", 
+        class: "px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 hover:from-indigo-700 hover:to-purple-700 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+  </div>
 <% end %>

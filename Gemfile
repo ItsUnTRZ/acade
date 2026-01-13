@@ -66,4 +66,6 @@ group :test do
   gem "rspec-rails"
   gem "capybara"
   gem "selenium-webdriver"
+  # For controller testing with assigns, render_template, etc.
+  gem "rails-controller-testing"
 end
