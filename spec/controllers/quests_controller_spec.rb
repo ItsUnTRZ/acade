@@ -19,6 +19,18 @@ RSpec.describe QuestsController, type: :controller do
 
       expect(assigns(:quest)).to be_a_new(Quest)
     end
+
+    it "เรียงลำดับ quests ใหม่สุดอยู่บน" do
+      quest1 = Quest.create!(name: "Quest 1")
+      sleep 0.1 # รอให้ created_at ต่างกัน
+      quest2 = Quest.create!(name: "Quest 2")
+
+      get :index
+
+      quests = assigns(:quests)
+      expect(quests.first).to eq(quest2) # ใหม่สุดอยู่บน
+      expect(quests.last).to eq(quest1)   # เก่าสุดอยู่ล่าง
+    end
   end
 
   describe "POST #create" do
