@@ -1,0 +1,23 @@
+# Commit Message Format
+# Use Conventional Commits format: <type>: <subject>
+
+## Types:
+- `feat`: A new feature
+- `fix`: A bug fix
+- `refactor`: Code refactoring
+- `docs`: Documentation
+- `test`: Tests
+- `chore`: Maintenance
+- `style`: Formatting
+- `perf`: Performance
+- `ci`: CI/CD
+- `build`: Build system
+
+## Examples:
+- `feat: add checkbox to mark quest as done`
+- `fix: resolve empty state not showing`
+- `refactor: simplify quests controller`
+- `docs: update setup instructions`
+- `test: add tests for quest ordering`
+- `chore: update simplecov version`
+- `ci: accept HTTP 202 for Render deploy`
