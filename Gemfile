@@ -68,4 +68,6 @@ group :test do
   gem "selenium-webdriver"
   # For controller testing with assigns, render_template, etc.
   gem "rails-controller-testing"
+  # Code coverage tool
+  gem "simplecov", require: false
 end
