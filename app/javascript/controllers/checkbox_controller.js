@@ -7,12 +7,18 @@ export default class extends Controller {
     const isChecked = checkbox.checked
     
     // หา quest item container
-    const questItem = checkbox.closest('.quest-item')
-    if (!questItem) return
+    const questItem = this.element.closest('.quest-item')
+    if (!questItem) {
+      console.error('Quest item not found')
+      return
+    }
     
     // หา text element ที่จะขีดฆ่า
-    const textElement = questItem.querySelector('.text-lg.font-medium')
-    if (!textElement) return
+    const textElement = questItem.querySelector('.quest-name')
+    if (!textElement) {
+      console.error('Quest name element not found')
+      return
+    }
     
     // Optimistic update: ขีดฆ่าหรือลบขีดฆ่าทันที
     if (isChecked) {
@@ -30,6 +36,9 @@ export default class extends Controller {
     }
     
     // Submit form
-    checkbox.closest('form').requestSubmit()
+    const form = checkbox.closest('form')
+    if (form) {
+      form.requestSubmit()
+    }
   }
 }

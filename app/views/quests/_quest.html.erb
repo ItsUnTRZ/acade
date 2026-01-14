@@ -1,23 +1,23 @@
 <%= turbo_frame_tag dom_id(quest) do %>
-  <div class="quest-item flex items-center justify-between p-4 bg-white rounded-lg border-2 <%= quest.is_done ? 'border-green-200 bg-green-50' : 'border-gray-200 hover:border-indigo-300' %> transition-all duration-200">
-    <div class="flex items-center space-x-4 flex-1">
-      <%= form_with model: quest, method: :patch, class: "flex items-center" do |f| %>
-        <label class="relative inline-flex items-center cursor-pointer group">
+  <div class="quest-item flex items-center justify-between p-3 sm:p-4 bg-white rounded-lg border-2 <%= quest.is_done ? 'border-green-200 bg-green-50' : 'border-gray-200 hover:border-indigo-300' %> transition-all duration-200">
+    <div class="flex items-center space-x-3 sm:space-x-4 flex-1 min-w-0">
+      <%= form_with model: quest, method: :patch, class: "flex items-center flex-shrink-0" do |f| %>
+        <label class="relative inline-flex items-center cursor-pointer group" data-controller="checkbox">
         <%= f.check_box :is_done,
             checked: quest.is_done, 
               class: "w-5 h-5 text-indigo-600 border-2 border-gray-300 rounded focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 cursor-pointer transition-all duration-200", 
-            data: { controller: "checkbox", action: "change->checkbox#submit" } %>
+            data: { action: "change->checkbox#submit" } %>
         </label>
       <% end %>
-      <div class="flex-1 ml-4">
-        <div class="text-lg font-medium <%= quest.is_done ? "line-through text-gray-400" : "text-gray-900" %>">
+      <div class="flex-1 ml-3 sm:ml-4 min-w-0">
+        <div class="quest-name text-base sm:text-lg font-medium <%= quest.is_done ? "line-through text-gray-400" : "text-gray-900" %> truncate">
         <%= quest.name %>
         </div>
       </div>
     </div>
     <%= link_to quest_path(quest), 
         data: { turbo_method: :delete }, 
-        class: "ml-4 p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2" do %>
+        class: "ml-2 sm:ml-4 p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 flex-shrink-0" do %>
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
       </svg>
